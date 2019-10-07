@@ -27,6 +27,7 @@ export default function addMention(
   if (selectedBlockText[focusOffset] === ' ') {
     spaceAlreadyPresent = true;
   }
+  console.log(trigger, ' trigger')
   let updatedSelection = editorState.getSelection().merge({
     anchorOffset: mentionIndex,
     focusOffset,
@@ -44,8 +45,8 @@ export default function addMention(
   if (!spaceAlreadyPresent) {
     // insert a blank space after mention
     updatedSelection = newEditorState.getSelection().merge({
-      anchorOffset: mentionIndex + value.length + trigger.length,
-      focusOffset: mentionIndex + value.length + trigger.length,
+      anchorOffset: mentionIndex + value.length ,
+      focusOffset: mentionIndex + value.length,
     });
     newEditorState = EditorState.acceptSelection(newEditorState, updatedSelection);
     contentState = Modifier.insertText(
