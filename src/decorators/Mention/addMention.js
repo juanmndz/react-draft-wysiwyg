@@ -14,7 +14,7 @@ export default function addMention(
   const { value, url } = suggestion;
   const entityKey = editorState
     .getCurrentContent()
-    .createEntity('MENTION', 'IMMUTABLE', { text: `${trigger}${value}`, value, url })
+    .createEntity('MENTION', 'IMMUTABLE', { text: `${value}`, value, url })
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
