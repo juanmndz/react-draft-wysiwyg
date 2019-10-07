@@ -35,7 +35,7 @@ export default function addMention(
   let contentState = Modifier.replaceText(
     newEditorState.getCurrentContent(),
     updatedSelection,
-    `${trigger}${value}`,
+    `${value}`,
     newEditorState.getCurrentInlineStyle(),
     entityKey,
   );
