@@ -7,42 +7,50 @@ class Mention {
   constructor(className) {
     this.className = className;
   }
-  renderMentionData = (description, status, value) => {
-    // console.log(data, 'data')
-    if (status === "critical") {
-      return (
-        <a className="tooltipx critical">
-          {value}
-          <span className="custom critical">
-            <img
-              src="https://rettex-images.s3.amazonaws.com/Critical.png"
-              alt="Error"
-              height="48"
-              width="48"
-            />
-            <em>Critical</em>${description}
-          </span>
-        </a>
-      );
+  renderMentionData = (description, status, value, children) => {
+    console.log(description, status, value, "data");
+    switch (status) {
+      case 'critical':
+        return (
+          <a className="tooltipx critical">
+            {value}
+            <span className="custom critical">
+              <img
+                src="https://rettex-images.s3.amazonaws.com/Critical.png"
+                alt="Error"
+                height="48"
+                width="48"
+              />
+              <em>Critical</em>${description}
+            </span>
+            {children}
+          </a>
+        );
+      case 'info':
+        return (
+          <a className="tooltipx help">
+            {value}
+            <span className="custom help">
+              <img
+                src="https://rettex-images.s3.amazonaws.com/Help.png"
+                alt="Help"
+                height="48"
+                width="48"
+              />
+              <em>Help</em>
+              {description}
+            </span>
+            {children}
+          </a>
+        );
+      default:
+        return (
+          <a>
+            {value}
+            {children}
+          </a>
+        );
     }
-    if (status === "info") {
-      return (
-        <a className="tooltipx help">
-          {value}
-          <span className="custom help">
-            <img
-              src="https://rettex-images.s3.amazonaws.com/Help.png"
-              alt="Help"
-              height="48"
-              width="48"
-            />
-            <em>Help</em>
-            {description}
-          </span>
-        </a>
-      );
-    }
-    return value;
   };
   getMentionComponent = () => {
     const className = this.className;
@@ -50,13 +58,13 @@ class Mention {
       const { description, status, value } = contentState
         .getEntity(entityKey)
         .getData();
-      const renderMention = this.renderMentionData(description, status, value);
-      return (
-        <React.Fragment>
-          {renderMention}
-          {/* {children} */}
-        </React.Fragment>
+      const renderMention = this.renderMentionData(
+        description,
+        status,
+        value,
+        children
       );
+      return <React.Fragment>{renderMention}</React.Fragment>;
     };
     MentionComponent.propTypes = {
       entityKey: PropTypes.number,
