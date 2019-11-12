@@ -11,10 +11,10 @@ export default function addMention(
   trigger: string,
   suggestion: Object,
 ): void {
-  const { value, status } = suggestion;
+  const { value, status, description } = suggestion;
   const entityKey = editorState
     .getCurrentContent()
-    .createEntity('MENTION', 'IMMUTABLE', { text: `${value}`, value, status })
+    .createEntity('MENTION', 'IMMUTABLE', { text: `${value}`, value, status, description })
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
@@ -27,7 +27,7 @@ export default function addMention(
   if (selectedBlockText[focusOffset] === ' ') {
     spaceAlreadyPresent = true;
   }
-  console.log(trigger, ' trigger')
+  // console.log(trigger, ' trigger')
   let updatedSelection = editorState.getSelection().merge({
     anchorOffset: mentionIndex,
     focusOffset,
