@@ -54,7 +54,7 @@ class Mention {
       return (
         <React.Fragment>
           {renderMention}
-          {children}
+          {/* {children} */}
         </React.Fragment>
       );
     };
