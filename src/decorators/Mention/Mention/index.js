@@ -37,8 +37,8 @@ class Mention {
                 height="48"
                 width="48"
               />
-              <em>Help</em>
-              {description}
+              <em>{value}</em>
+              {/* {description} */}
             </span>
             {children}
           </a>
