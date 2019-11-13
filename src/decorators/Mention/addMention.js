@@ -11,10 +11,10 @@ export default function addMention(
   trigger: string,
   suggestion: Object,
 ): void {
-  const { value, status, description } = suggestion;
+  const { value, status, description, key } = suggestion;
   const entityKey = editorState
     .getCurrentContent()
-    .createEntity('MENTION', 'IMMUTABLE', { text: `${value}`, value, status, description })
+    .createEntity('MENTION', 'IMMUTABLE', { text: `${value}`, value, status, description, key })
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();

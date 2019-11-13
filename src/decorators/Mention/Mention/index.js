@@ -7,9 +7,10 @@ class Mention {
   constructor(className) {
     this.className = className;
   }
-  renderMentionData = (description, status, value, text, children) => {
-    console.log(description, status, value, text, "data");
+  renderMentionData = (description, status, value, text, key, children) => {
+    console.log(description, status, value, text, key, "data");
     console.log(text, "text");
+    console.log(key, "key");
     switch (status) {
       case 'critical':
         return (
@@ -56,7 +57,7 @@ class Mention {
   getMentionComponent = () => {
     const className = this.className;
     const MentionComponent = ({ entityKey, children, contentState }) => {
-      const { description, status, value, text } = contentState
+      const { description, status, value, text, key } = contentState
         .getEntity(entityKey)
         .getData();
       const renderMention = this.renderMentionData(
@@ -64,6 +65,7 @@ class Mention {
         status,
         value,
         text,
+        key,
         children
       );
       return <React.Fragment>{renderMention}</React.Fragment>;
