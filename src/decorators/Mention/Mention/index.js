@@ -9,6 +9,7 @@ class Mention {
   }
   renderMentionData = (description, status, value, text, children) => {
     console.log(description, status, value, text, "data");
+    console.log(text, "text");
     switch (status) {
       case 'critical':
         return (
