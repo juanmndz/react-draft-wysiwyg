@@ -12,6 +12,7 @@ export default function addMention(
   suggestion: Object,
 ): void {
   const { value, status, description, key } = suggestion;
+  console.log(editorState, separator, trigger, suggestion, 'addmention')
   const entityKey = editorState
     .getCurrentContent()
     .createEntity('MENTION', 'IMMUTABLE', { text: `${value}`, value, status, description, key })
