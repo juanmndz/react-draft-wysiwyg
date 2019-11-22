@@ -15,7 +15,7 @@ class Mention {
       case 'critical':
         return (
           <a className="tooltipx critical">
-            {value}
+            {text}
             <span className="custom critical">
               <img
                 src="https://rettex-images.s3.amazonaws.com/Critical.png"
@@ -31,7 +31,7 @@ class Mention {
       case 'info':
         return (
           <a className="tooltipx help">
-            {value}
+            {text}
             <span className="custom help">
               <img
                 src="https://rettex-images.s3.amazonaws.com/Help.png"
